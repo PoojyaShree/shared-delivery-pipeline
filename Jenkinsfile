@@ -1,4 +1,5 @@
+@Library('my-shared-library') _
 myDeliveryPipeline {
     branch = 'master'
-    scmUrl = 'ssh://git@myScmServer.com/repos/myRepo.git'
+    scmUrl = 'https://github.com/PoojyaShree/maven-web-application'
     }
