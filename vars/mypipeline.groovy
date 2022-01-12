@@ -1,7 +1,11 @@
 def call(Map pipelineParams) {
 
     pipeline {
-        agent any
+        agent {
+            docker{ image 'gaddamnarendra/maven:latest'
+                  }
+        }
+              
         stages {
             stage('checkout git') {
                 steps {
