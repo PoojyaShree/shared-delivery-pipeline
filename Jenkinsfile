@@ -1,5 +1,5 @@
 @Library('my-shared-library') _
-myDeliveryPipeline {
+mypipeline{
     branch = 'master'
     scmUrl = 'https://github.com/PoojyaShree/maven-web-application'
     }
