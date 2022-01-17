@@ -2,7 +2,8 @@ def call(Map pipelineParams) {
 
     pipeline {
         agent {
-            //docker{ image 'gaddamnarendra/maven:latest'
+            docker{ 
+                //image 'gaddamnarendra/maven:latest'
             image 'gaddamnarendra/myprivaterepo:latest'
             registryUrl 'https://registry.hub.docker.com'
             registryCredentialsId 'DOCKER_CRDS'
