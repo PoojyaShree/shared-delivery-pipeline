@@ -5,7 +5,7 @@ def call(body) {
     body()
 
     pipeline {
-       
+         environment{ rtMaven=''}
         agent any /*{
             docker{ 
                 //image 'gaddamnarendra/maven:latest'
@@ -27,7 +27,7 @@ def call(body) {
                     //sh 'mvn clean package -DskipTests=true'
                      script {
                              //def server = Artifactory.server('artifactory')
-                              def rtMaven = Artifactory.newMavenBuild()
+                               rtMaven = Artifactory.newMavenBuild()
                                //rtMaven.resolver server: server, releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot'
                                 //rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
                                 rtMaven.tool = 'maven'
@@ -39,8 +39,8 @@ def call(body) {
             stage ('test') {
                 steps {
                     parallel (
-                        "unit tests": { sh 'mvn test' },
-                        "integration tests": { sh 'mvn integration-test' }
+                        "unit tests": { rtMaven.run pom: 'pom.xml', goals: 'test' },
+                        "integration tests": { rtMaven.run pom: 'pom.xml', goals: 'integration-test' }
                     )
                 }
             }
