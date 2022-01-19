@@ -36,7 +36,7 @@ def call(body) {
                                   //server.publishBuildInfo buildInfo
                             }*/
                      script{
-                     if("${BRANCH_NAME}" !='master'){
+                     if("${env.BRANCH_NAME}" !='master'){
                           mavenn{
                                mavenGoals = "${mvnGoals}"
                           }
