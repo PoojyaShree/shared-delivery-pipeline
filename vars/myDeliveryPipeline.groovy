@@ -4,6 +4,8 @@ def call(body) {
     body.delegate = pipelineParams
     body()
      def mvnGoals = pipelineParams.mvnGoals ?: 'clean package'
+     def mvnTest = pipelineParams.mvnTest ?: 'test'
+     def mvnintTest = pipelineParams.mvnintTest ?: 'integration-test'
 
     pipeline {
          //environment{ rtMaven=''}
@@ -48,8 +50,12 @@ def call(body) {
                 steps {
                      script{
                     parallel (
-                        "unit tests": { rtMaven.run pom: 'pom.xml', goals: 'test' },
-                        "integration tests": { rtMaven.run pom: 'pom.xml', goals: 'integration-test' }
+                         mavenn{
+                             "unit tests":  mavenGoals = "${mvnTest}",
+                              "integration tests": mavenGoals = "${mvnintTest}"
+                          }
+                        //"unit tests": { rtMaven.run pom: 'pom.xml', goals: 'test' },
+                        //"integration tests": { rtMaven.run pom: 'pom.xml', goals: 'integration-test' }
                     )
                      }
                 }
