@@ -6,14 +6,14 @@ def call(body) {
 
     pipeline {
        
-        agent {
+        agent any /*{
             docker{ 
                 //image 'gaddamnarendra/maven:latest'
             image 'gaddamnarendra/myprivaterepo:latest'
             registryUrl 'https://registry.hub.docker.com'
             registryCredentialsId 'DOCKER_CRDS'
                   }
-              }
+              }*/
               
         stages {
             stage('checkout git') {
