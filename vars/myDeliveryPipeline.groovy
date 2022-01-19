@@ -24,7 +24,16 @@ def call(body) {
 
             stage('build') {
                 steps {
-                    sh 'mvn clean package -DskipTests=true'
+                    //sh 'mvn clean package -DskipTests=true'
+                     script {
+                             //def server = Artifactory.server('artifactory')
+                              def rtMaven = Artifactory.newMavenBuild()
+                               //rtMaven.resolver server: server, releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot'
+                                //rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
+                                rtMaven.tool = 'maven'
+                                 def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'install'
+                                  //server.publishBuildInfo buildInfo
+                            }
                 }
             }
             stage ('test') {
