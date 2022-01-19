@@ -5,4 +5,4 @@ def call(body) {
     body()
    def M3_HOME= tool 'maven'
    def mavenGoals=pipelineParams.mavenGoals 
-   
+}
