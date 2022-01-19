@@ -3,9 +3,10 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
+     def mvnGoals = pipelineParams.mvnGoals ?: 'clean package'
 
     pipeline {
-         environment{ rtMaven=''}
+         //environment{ rtMaven=''}
         agent any /*{
             docker{ 
                 //image 'gaddamnarendra/maven:latest'
@@ -25,15 +26,20 @@ def call(body) {
             stage('build') {
                 steps {
                     //sh 'mvn clean package -DskipTests=true'
-                     script {
-                             //def server = Artifactory.server('artifactory')
+                    /* script {
+                            //def server = Artifactory.server('artifactory')
                                rtMaven = Artifactory.newMavenBuild()
                                //rtMaven.resolver server: server, releaseRepo: 'libs-release', snapshotRepo: 'libs-snapshot'
                                 //rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
                                 rtMaven.tool = 'maven'
                                  def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'install'
                                   //server.publishBuildInfo buildInfo
-                            }
+                            }*/
+                     if("${BRANCH_NAME}" !='master'){
+                          mavenn{
+                               mavenGoals = "${mvnGoals}"
+                          }
+                     }   
                 }
             }
             stage ('test') {
