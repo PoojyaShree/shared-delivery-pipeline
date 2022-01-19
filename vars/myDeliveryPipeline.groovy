@@ -51,7 +51,7 @@ def call(body) {
                      script{
                     parallel (
                          mavenn{
-                              "unit tests:" { mavenGoals = "${mvnTest}"},
+                              "unit tests:" { mavenGoals = "${mvnTest}"}
                                "integration tests:" {mavenGoals = "${mvnintTest}"}
                           }
                         //"unit tests": { rtMaven.run pom: 'pom.xml', goals: 'test' },
