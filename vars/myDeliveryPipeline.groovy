@@ -35,11 +35,13 @@ def call(body) {
                                  def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'install'
                                   //server.publishBuildInfo buildInfo
                             }*/
+                     script{
                      if("${BRANCH_NAME}" !='master'){
                           mavenn{
                                mavenGoals = "${mvnGoals}"
                           }
-                     }   
+                     } 
+                    }
                 }
             }
             stage ('test') {
