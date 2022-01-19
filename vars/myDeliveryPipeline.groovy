@@ -38,10 +38,12 @@ def call(body) {
             }
             stage ('test') {
                 steps {
+                     script{
                     parallel (
                         "unit tests": { rtMaven.run pom: 'pom.xml', goals: 'test' },
                         "integration tests": { rtMaven.run pom: 'pom.xml', goals: 'integration-test' }
                     )
+                     }
                 }
             }
          }
