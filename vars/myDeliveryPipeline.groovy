@@ -33,6 +33,12 @@ def call(body) {
                           }
                     }
             stage ('test') {
+                 when {
+                    anyOf {
+                        equals expected: true, actual: pipelineParams.isEmpty();
+                        equals expected: false, actual: pipelineParams.test
+                    }  
+                }
                 steps {
                      script{
                     parallel (
