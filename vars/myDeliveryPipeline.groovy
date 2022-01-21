@@ -31,6 +31,7 @@ def call(body) {
                                  def buildInfo = rtMaven.run pom: 'pom.xml', goals: 'install'
                                }
                           }
+                        }
                     }
             stage ('test') {
                  when {
