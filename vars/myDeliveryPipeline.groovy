@@ -32,7 +32,7 @@ def call(body) {
                                }
                           }
                         }
-                    }
+                    
             stage ('test') {
                  when {
                     anyOf {
