@@ -1,5 +1,6 @@
 def "Jenkinsfile"() {
 	setup:
+		//def Jenkinsfile = loadPipelineScriptForTest("com/homeaway/CoolJenkinsfile.groovy")
 		def Jenkinsfile = loadPipelineScriptForTest("com/homeaway/CoolJenkinsfile.groovy")
 	when:
 		Jenkinsfile.run()
