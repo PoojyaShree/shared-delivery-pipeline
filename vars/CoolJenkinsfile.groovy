@@ -7,3 +7,4 @@ body()
 node( "legacy" ) {
 	echo( "hello world" )
 }
+}
