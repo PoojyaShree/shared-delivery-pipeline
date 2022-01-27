@@ -4,7 +4,15 @@ def call(body) {
 //body.resolveStrategy = Closure.DELEGATE_FIRST
 //body.delegate = config
 body()
-node( "legacy" ) {
+	pipeline{
+		agent any
+		stages{
+			
+stage( "legacy" ) {
+	steps{
 	echo( "hello world" )
-}
-}
+	}//steps
+}//stage
+ }//stages
+}//pipeline
+}//call
